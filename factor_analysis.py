@@ -26,7 +26,6 @@ df_recog = data3.iloc[:, 9:15]
 df = pd.concat([df_obsta, df_value, df_knowl, df_recog],axis=1)
 
 df = df.dropna(axis=0)
-
 X1 = df.iloc[:,:6]
 X2 = df.iloc[:,6:11]
 X3 = df.iloc[:,11:15]
@@ -44,6 +43,12 @@ print(Y_scaled)
 X = pd.concat([X1,X2,X3],axis=1)
 scaler = preprocessing.StandardScaler().fit(X)
 X_scaled = scaler.transform(X)
+
+#%%
+import sklearn.decomposition.FactorAnalysis
+fac = sklearn.decomposition._factor_analysis(n_components=2)
+#%%
+
 fa = FactorAnalyzer(n_factors=2, rotation="varimax")
 fa.fit(X_scaled)
 
@@ -77,7 +82,7 @@ factor_X = pd.DataFrame({
 # print(factor_X)
 
 print("\n[Factor Correlation]")
-corr = factor_X.corr(method='pearson')
+corr = pd.DataFrame.from_records(loadings).corr(method='pearson')
 corr.style.background_gradient(cmap='coolwarm')
 
 #%%
