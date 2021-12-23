@@ -6,10 +6,14 @@ import os
 from functools import reduce
 
 #%%
-os.chdir("E:\Data\\redd_plus\survey")
+# os.chdir("E:\Data\\redd_plus\survey")
+os.chdir("/Users/wonhyung64/data/redd")
+
 print("Current Working Directory : ", os.getcwd())
 
 df = pd.read_excel("국내기업의 해외온실가스 감축사업 참여방안 설문조사 raw data_1.xlsx", header = 2)
+df_ = pd.read_excel("국내기업의 해외온실가스 감축사업 참여방안 설문조사 raw data_2.xlsx", header = 2)
+
 df = df.iloc[:,1:]
 
 #%%
