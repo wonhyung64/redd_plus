@@ -14,7 +14,8 @@ from sklearn import preprocessing
 import statsmodels.api as sm
 
 #%%
-os.chdir("E:\Data\\redd_plus\survey")
+os.chdir("/Users/wonhyung64/data/redd")
+# os.chdir("E:\Data\\redd_plus\survey")
 print("Current Working Directory :", os.getcwd())
 
 #%%
@@ -48,12 +49,17 @@ print(Y_scaled)
 X = pd.concat([X1,X2,X3],axis=1)
 scaler = preprocessing.StandardScaler().fit(X)
 X_scaled = scaler.transform(X)
-
+X_scaled.shape
+type(X_scaled)
+X_scaled[0]
+sum(X_scaled[0] * loadings[:,0]**2)
+sum(X_scaled[0] * loadings[:,1]**2)
 #%%
 feature_names = ['X1_1','X1_2','X1_3','X1_4','X1_5','X1_6','X2_1','X2_2','X2_3','X2_4','X2_5','X3_1','X3_2','X3_3','X3_4']
 n_comps = 2
 #%%
-os.chdir("E:\Data\\redd_plus\\factor_analysis")
+os.chdir("/Users/wonhyung64/data/redd")
+# os.chdir("E:\Data\\redd_plus\\factor_analysis")
 # %%
 fa = FactorAnalysis()
 fa.set_params(n_components = n_comps)
@@ -63,7 +69,7 @@ loadings = fa.components_.T
 col_tmp = ['loading1','loading2']
 loading = pd.DataFrame(loadings, index=feature_names, columns = col_tmp)
 
-variables = fa.fit_sform(X_scaled)
+variables = fa.fit_transform(X_scaled)
 col_tmp = ['factor1','factor2']
 factor = pd.DataFrame(variables, index=None, columns = col_tmp)
 

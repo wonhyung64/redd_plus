@@ -192,3 +192,5 @@ data1.to_excel("survey_case1_no_1.xlsx", index=False)
 data2.to_excel("survey_case1_no_2.xlsx", index=False)
 data3.to_excel("survey_case1_no_3.xlsx", index=False)
 # %%
+
+# %%
